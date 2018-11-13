@@ -384,9 +384,7 @@ class Network(object):
 
                 if vertices:
                     components = [c.strip() for c in line.decode('utf-8').split("\t")]
-                    if components[0] not in self.vertices:
-                        self.vertices[components[0]] = []
-                    self.vertices[components[0]].append((float(components[1]), float(components[2])))
-
-
-
+                    link_id = components[0][:(self.ep._max_label_len - 1)]
+                    if link_id not in self.vertices:
+                        self.vertices[link_id] = []
+                    self.vertices[link_id].append((float(components[1]), float(components[2])))
